@@ -1,0 +1,463 @@
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --text-main: #111111;
+  --text-muted: #6E6E73;
+  --accent-gold: #C5A059;
+  --wa-green: #25D366;
+  --border-color: #E5E5EA;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- LOADER SCREEN --- */
+#loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-primary);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loader-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.loader-counter {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.loader-center {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.loader-image-container {
+  width: 100%;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.loader-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.loader-caption {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.loader-progress-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--border-color);
+  position: relative;
+}
+
+.loader-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--text-main);
+  transition: width 0.1s linear;
+}
+
+/* --- SKELETON SCREEN --- */
+#skeleton-wrapper {
+  padding: 3rem 5%;
+}
+
+.skeleton-pulse {
+  background: linear-gradient(90deg, #F0F0F0 25%, #E0E0E0 50%, #F0F0F0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-hero {
+  height: 380px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.skeleton-card {
+  height: 340px;
+  width: 100%;
+}
+
+/* --- MAIN LANDING PAGE --- */
+#main-content {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#main-content.visible {
+  opacity: 1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+nav a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+nav a:hover { color: var(--text-main); }
+
+.hero {
+  padding: 5rem 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.hero-tag {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background-color: var(--text-main);
+  color: var(--bg-primary);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background-color: #333333;
+}
+
+.hero-image-box {
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  height: 480px;
+  overflow: hidden;
+}
+
+.hero-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Catalog Section */
+.products-section {
+  padding: 5rem 5%;
+  background-color: var(--bg-secondary);
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+}
+
+.product-img {
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  background-color: var(--bg-secondary);
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.product-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.price-tag {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.price-tag small {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Collapsible Specifications */
+.details-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.details-btn:hover { background-color: var(--bg-secondary); }
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.details-btn.active .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.details-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.details-content.open {
+  opacity: 1;
+  margin-top: 0.8rem;
+}
+
+.details-content ul {
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.details-content li { margin-bottom: 0.4rem; }
+
+/* Bottom WhatsApp Section */
+.whatsapp-banner {
+  padding: 5rem 5%;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.whatsapp-banner-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.whatsapp-banner h2 {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.whatsapp-banner p {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.btn-whatsapp-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.2rem;
+  background-color: var(--wa-green);
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-whatsapp-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.wa-icon-svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--wa-green);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+.float-tooltip {
+  position: absolute;
+  right: 70px;
+  background-color: var(--text-main);
+  color: var(--bg-primary);
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.whatsapp-float:hover .float-tooltip {
+  opacity: 1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 3rem 5%;
+  }
+  .hero-text h1 { font-size: 2.4rem; }
+  .hero-image-box { height: 320px; }
+  nav { display: none; }
+  .float-tooltip { display: none; }
+}
