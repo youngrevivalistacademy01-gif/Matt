@@ -1,397 +1,150 @@
-:root {
-  --bg-cream: #FDFBF7;
-  --surface-white: #FFFFFF;
-  --text-primary: #0F172A;
-  --text-muted: #64748B;
-  --border-subtle: #E2E8F0;
-  --border-accent: #CBD5E1;
-  --brand-navy: #0F172A;
+// Replace with the live WhatsApp sales number (international format without + or spaces)
+const PHONE_NUMBER = "2340000000000"; 
+
+const products = [
+  // Security Cameras
+  { id: 1, name: "Dome Camera", category: "security", price: "₦35,000", desc: "Vandal-resistant, discreet design offering wide-angle coverage.", image: "https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=600&q=80" },
+  { id: 2, name: "Bullet Camera", category: "security", price: "₦42,000", desc: "Long-range directional surveillance with built-in deterrent LEDs.", image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80" },
+  { id: 3, name: "PTZ (Pan-Tilt-Zoom)", category: "security", price: "₦85,000", desc: "Remote motorized tracking designed for complete coverage.", image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" },
+  { id: 4, name: "Turret / Eyeball Camera", category: "security", price: "₦38,000", desc: "Flexible viewing angles engineered to eliminate IR lens glare.", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" },
+  { id: 5, name: "Wireless / Wi-Fi Camera", category: "security", price: "₦28,000", desc: "Fast installation with zero video cabling required.", image: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80" },
+  { id: 6, name: "Wired / PoE Camera", category: "security", price: "₦48,000", desc: "High-speed data and stable power delivery via single ethernet cable.", image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" },
+  { id: 7, name: "Doorbell Camera", category: "security", price: "₦30,000", desc: "Smart door access monitoring with real-time two-way audio.", image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80" },
+  { id: 8, name: "Thermal Camera", category: "security", price: "₦150,000", desc: "Advanced heat-signature tracking functional in zero-light.", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" },
+  { id: 9, name: "360° / Fisheye Camera", category: "security", price: "₦60,000", desc: "Panoramic single-camera coverage designed for open rooms.", image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80" },
+  { id: 10, name: "Covert / Hidden Camera", category: "security", price: "₦25,000", desc: "Discreet form factor designed for covert interior monitoring.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" },
+
+  // Solar Panels
+  { id: 11, name: "Monocrystalline Panel", category: "solar", price: "₦110,000", desc: "Highest efficiency rating (~22%) optimized for smaller roof spaces.", image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80" },
+  { id: 12, name: "Polycrystalline Panel", category: "solar", price: "₦85,000", desc: "Cost-effective energy generation with reliable cell endurance.", image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80" },
+  { id: 13, name: "Thin-Film Solar Panel", category: "solar", price: "₦65,000", desc: "Ultra-flexible, lightweight design for curved or weak surfaces.", image: "https://images.unsplash.com/photo-1548337138-e84d379b360a?auto=format&fit=crop&w=600&q=80" },
+  { id: 14, name: "PERC Solar Panel", category: "solar", price: "₦125,000", desc: "Passivated cell architecture yielding superior low-light performance.", image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80" },
+  { id: 15, name: "Bifacial Solar Panel", category: "solar", price: "₦140,000", desc: "Dual-sided glass structure harvesting reflected rear light.", image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=600&q=80" },
+  { id: 16, name: "Building-Integrated PV", category: "solar", price: "₦210,000", desc: "Structural solar tiles that directly replace traditional roofing.", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" },
+  { id: 17, name: "Concentrated PV (CPV)", category: "solar", price: "₦280,000", desc: "Focuses solar radiation using optical lenses for high-yield plants.", image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=600&q=80" },
+
+  // Building Materials
+  { id: 18, name: "Structural Concrete Mix", category: "building", price: "₦4,500 / bag", desc: "High-compressive foundational mix for structural cast work.", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80" },
+  { id: 19, name: "Structural Steel Beams", category: "building", price: "₦850,000 / ton", desc: "High-tensile load-bearing beams for commercial frameworks.", image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" },
+  { id: 20, name: "Timber / Wood Planks", category: "building", price: "₦12,000 / plank", desc: "Sustainably harvested framing wood treated for moisture resistance.", image: "https://images.unsplash.com/photo-1520114878144-6123749968dd?auto=format&fit=crop&w=600&q=80" },
+  { id: 21, name: "Masonry Red Bricks", category: "building", price: "₦350 / unit", desc: "Durable fire-resistant structural bricks for exterior walls.", image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" },
+  { id: 22, name: "Architectural Glass Facades", category: "building", price: "₦45,000 / sqm", desc: "Thermal-insulated reinforced glass for contemporary exteriors.", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" },
+  { id: 23, name: "Natural Stone Cladding", category: "building", price: "₦18,000 / sqm", desc: "Elegantly textured stone veneer for structural wall accents.", image: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80" },
+  { id: 24, name: "Insulated Concrete Forms", category: "building", price: "₦22,000 / unit", desc: "High-efficiency block system delivering built-in insulation.", image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" },
+  { id: 25, name: "Cross-Laminated Timber", category: "building", price: "₦320,000 / unit", desc: "Engineered solid timber panels for modern sustainable builds.", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" },
+  { id: 26, name: "Metal Siding Panels", category: "building", price: "₦15,000 / sqm", desc: "Low-maintenance weather-sealed aluminum and steel cladding.", image: "https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80" },
+  { id: 27, name: "Gypsum Drywall Boards", category: "building", price: "₦6,500 / sheet", desc: "Precision-cut gypsum boards for clean interior wall division.", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80" },
+  { id: 28, name: "Fiber Cement Siding", category: "building", price: "₦11,000 / board", desc: "Fireproof, weather-resistant siding built to last decades.", image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" },
+  { id: 29, name: "Composite Roof Shingles", category: "building", price: "₦25,000 / bundle", desc: "Multi-layered composite shingles for severe weather protection.", image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=600&q=80" }
+];
+
+const grid = document.getElementById("product-grid");
+const filterTabs = document.querySelectorAll(".filter-tab");
+
+function generateWALink(name, price) {
+  const text = `Hello Matt Lifesciential LTD., I would like to inquire about purchasing: ${name} (${price}). Is this currently available?`;
+  return `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+function updateGlobalWALinks() {
+  const navBtn = document.getElementById("nav-wa-link");
+  const floatBtn = document.getElementById("floating-wa-link");
+  if (navBtn) navBtn.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent("Hello Matt Lifesciential LTD., I have a general inquiry.")}`;
+  if (floatBtn) floatBtn.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent("Hello Matt Lifesciential LTD., I would like to make an inquiry.")}`;
+}
+
+function renderSkeletons(count = 12) {
+  grid.innerHTML = Array(count).fill(0).map(() => `
+    <div class="skeleton-card">
+      <div class="sk-line sk-img"></div>
+      <div style="padding: 1.25rem;">
+        <div class="sk-line sk-title"></div>
+        <div class="sk-line sk-body-1"></div>
+        <div class="sk-line sk-body-2"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border-top: 1px solid var(--border-subtle);">
+        <div class="sk-line" style="width: 35%; height: 20px; border-radius: 4px;"></div>
+        <div class="sk-line sk-btn"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function createProductCardMarkup(item) {
+  return `
+    <article class="product-card">
+      <div class="card-media">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" class="product-img">
+        <span class="card-category-badge">${item.category}</span>
+      </div>
+      <div class="card-top">
+        <h3 class="card-title">${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+      </div>
+      <div class="card-bottom">
+        <div class="card-price">
+          <span class="price-label">Price / Unit</span>
+          <span class="price-value">${item.price}</span>
+        </div>
+        <a href="${generateWALink(item.name, item.price)}" 
+           target="_blank" 
+           class="wa-card-trigger" 
+           aria-label="Inquire via WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+// Progressive bit-by-bit cascading render over a 10-second period
+function progressiveRender(items) {
+  grid.innerHTML = ''; // Clear skeleton screen
   
-  --wa-brand: #25D366;
-  --wa-dark: #128C7E;
-  --wa-gradient: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  --wa-shadow: rgba(37, 211, 102, 0.35);
+  const batchSize = Math.max(1, Math.ceil(items.length / 5)); // 5 staggered waves
+  const waveInterval = 2000; // 2s * 5 waves = 10s total cascade duration
 
-  --radius-lg: 16px;
-  --shadow-card: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
-  --shadow-hover: 0 16px 28px -8px rgba(15, 23, 42, 0.12);
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  items.forEach((item, index) => {
+    const waveIndex = Math.floor(index / batchSize);
+    const delay = waveIndex * waveInterval;
+
+    setTimeout(() => {
+      const cardContainer = document.createElement('div');
+      cardContainer.innerHTML = createProductCardMarkup(item);
+      const cardNode = cardContainer.firstElementChild;
+      grid.appendChild(cardNode);
+    }, delay);
+  });
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+function updateCategoryCounts() {
+  document.getElementById("count-all").textContent = products.length;
+  document.getElementById("count-security").textContent = products.filter(p => p.category === "security").length;
+  document.getElementById("count-solar").textContent = products.filter(p => p.category === "solar").length;
+  document.getElementById("count-building").textContent = products.filter(p => p.category === "building").length;
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-cream);
-  color: var(--text-primary);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+window.addEventListener("DOMContentLoaded", () => {
+  updateGlobalWALinks();
+  updateCategoryCounts();
+  renderSkeletons(12);
+  
+  // Begin progressive render sequence after initial layout paint
+  setTimeout(() => {
+    progressiveRender(products);
+  }, 1000);
+});
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-}
+// Category filtering with immediate render for interactive tab switches
+filterTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    filterTabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
 
-/* Header Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(253, 251, 247, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 72px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
-}
-
-.brand {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--brand-navy);
-  text-decoration: none;
-}
-
-.brand-accent { color: var(--wa-dark); }
-
-.nav-wa-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface-white);
-  border: 1px solid var(--border-accent);
-  padding: 0.55rem 1.1rem;
-  border-radius: 50px;
-  color: var(--brand-navy);
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.nav-wa-btn i { color: var(--wa-brand); font-size: 1.1rem; }
-.nav-wa-btn:hover { border-color: var(--wa-brand); box-shadow: 0 4px 12px var(--wa-shadow); }
-
-/* Hero Section */
-.hero {
-  padding: 3.5rem 1.25rem 2rem;
-  text-align: center;
-}
-
-.hero-badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--wa-dark);
-  background: rgba(37, 211, 102, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 50px;
-  margin-bottom: 1rem;
-}
-
-.hero h1 {
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.8px;
-  margin-bottom: 0.85rem;
-  color: var(--brand-navy);
-}
-
-.hero p {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-/* Category Filters Mobile-Optimized */
-.controls-section {
-  padding: 1.25rem 0;
-  position: sticky;
-  top: 72px;
-  z-index: 90;
-  background: rgba(253, 251, 247, 0.95);
-  backdrop-filter: blur(8px);
-}
-
-.filter-wrapper {
-  display: flex;
-  gap: 0.6rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.filter-wrapper::-webkit-scrollbar { display: none; }
-
-.filter-tab {
-  background: var(--surface-white);
-  border: 1px solid var(--border-subtle);
-  padding: 0.6rem 1.1rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  touch-action: manipulation;
-}
-
-.filter-tab .badge {
-  background: var(--bg-cream);
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-}
-
-.filter-tab.active, .filter-tab:hover {
-  background: var(--brand-navy);
-  color: var(--surface-white);
-  border-color: var(--brand-navy);
-}
-
-.filter-tab.active .badge {
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--surface-white);
-}
-
-/* Responsive Product Grid */
-.store-main { padding: 1.5rem 1.25rem 6rem; }
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Product Card UX */
-.product-card {
-  background: var(--surface-white);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: var(--shadow-card);
-  opacity: 0;
-  transform: translateY(16px);
-  animation: bitReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-@keyframes bitReveal {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border-accent);
-}
-
-.card-media {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  background-color: #f1f5f9;
-  overflow: hidden;
-}
-
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-img { transform: scale(1.05); }
-
-.card-category-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.card-top { padding: 1.25rem 1.25rem 0.5rem; }
-
-.card-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--brand-navy);
-  margin-bottom: 0.5rem;
-  line-height: 1.35;
-}
-
-.card-desc {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-.card-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem 1.25rem;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: 0.5rem;
-}
-
-.price-label { font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; display: block; }
-.price-value { font-size: 1.15rem; font-weight: 800; color: var(--brand-navy); }
-
-/* Realistic WhatsApp Button */
-.wa-card-trigger {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--wa-gradient);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 1.35rem;
-  box-shadow: 0 4px 12px var(--wa-shadow);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
-  touch-action: manipulation;
-}
-
-.wa-card-trigger:hover {
-  transform: scale(1.1) rotate(-6deg);
-  box-shadow: 0 8px 18px var(--wa-shadow);
-}
-
-/* Skeleton Screens */
-.skeleton-card {
-  background: var(--surface-white);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  height: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.sk-line {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-.sk-img { width: 100%; height: 200px; }
-.sk-title { width: 75%; height: 20px; margin-bottom: 0.75rem; border-radius: 4px; }
-.sk-body-1 { width: 100%; height: 12px; margin-bottom: 0.4rem; border-radius: 4px; }
-.sk-body-2 { width: 60%; height: 12px; border-radius: 4px; }
-.sk-btn { width: 44px; height: 44px; border-radius: 50%; }
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Floating Sticky WhatsApp Button */
-.floating-wa {
-  position: fixed;
-  bottom: 2rem;
-  right: 1.5rem;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--wa-gradient);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.7rem;
-  box-shadow: 0 8px 20px var(--wa-shadow);
-  z-index: 200;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.floating-wa:hover { transform: scale(1.1); }
-
-.wa-pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--wa-brand);
-  z-index: -1;
-  animation: wa-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes wa-ping { 75%, 100% { transform: scale(1.4); opacity: 0; } }
-
-.wa-tooltip {
-  position: absolute;
-  right: 66px;
-  background: var(--brand-navy);
-  color: white;
-  padding: 0.4rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform: translateX(8px);
-}
-
-.floating-wa:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
-
-.footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: 2.5rem 0;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  background: var(--surface-white);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 640px) {
-  .nav-container { height: 64px; }
-  .brand { font-size: 1.05rem; }
-  .nav-wa-btn span { display: none; }
-  .nav-wa-btn { padding: 0.5rem 0.75rem; }
-  .controls-section { top: 64px; }
-  .product-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-  .floating-wa { bottom: 1.25rem; right: 1.25rem; width: 50px; height: 50px; font-size: 1.5rem; }
-  .wa-tooltip { display: none; }
-}
+    const category = tab.getAttribute("data-category");
+    const filtered = category === "all" ? products : products.filter(p => p.category === category);
+    
+    // Direct immediate render upon explicit tab click
+    grid.innerHTML = filtered.map(item => createProductCardMarkup(item)).join('');
+  });
+});
