@@ -1,4 +1,3 @@
-// Replace with the live WhatsApp sales number (international format without + or spaces)
 const PHONE_NUMBER = "2348154715953"; 
 
 const products = [
@@ -39,7 +38,13 @@ const products = [
 ];
 
 const grid = document.getElementById("product-grid");
-const filterTabs = document.querySelectorAll(".filter-tab");
+
+// Dropdown Elements
+const dropdownBtn = document.getElementById("dropdown-btn");
+const dropdownMenu = document.getElementById("dropdown-menu");
+const selectedCategoryText = document.getElementById("selected-category-text");
+const selectedCount = document.getElementById("selected-count");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 function generateWALink(name, price) {
   const text = `Hello Matt Lifesciential LTD., I would like to inquire about purchasing: ${name} (${price}). Is this currently available?`;
@@ -97,12 +102,11 @@ function createProductCardMarkup(item) {
   `;
 }
 
-// Progressive bit-by-bit cascading render over a 10-second period
 function progressiveRender(items) {
-  grid.innerHTML = ''; // Clear skeleton screen
+  grid.innerHTML = '';
   
-  const batchSize = Math.max(1, Math.ceil(items.length / 5)); // 5 staggered waves
-  const waveInterval = 2000; // 2s * 5 waves = 10s total cascade duration
+  const batchSize = Math.max(1, Math.ceil(items.length / 5));
+  const waveInterval = 2000;
 
   items.forEach((item, index) => {
     const waveIndex = Math.floor(index / batchSize);
@@ -118,33 +122,71 @@ function progressiveRender(items) {
 }
 
 function updateCategoryCounts() {
-  document.getElementById("count-all").textContent = products.length;
+  const allCount = products.length;
+  document.getElementById("count-all").textContent = allCount;
   document.getElementById("count-security").textContent = products.filter(p => p.category === "security").length;
   document.getElementById("count-solar").textContent = products.filter(p => p.category === "solar").length;
   document.getElementById("count-building").textContent = products.filter(p => p.category === "building").length;
+  
+  selectedCount.textContent = allCount;
 }
+
+// Toggle Dropdown Menu Visibility
+function toggleDropdown() {
+  const isOpen = dropdownMenu.classList.contains("show");
+  if (isOpen) {
+    dropdownMenu.classList.remove("show");
+    dropdownBtn.classList.remove("open");
+    dropdownBtn.setAttribute("aria-expanded", "false");
+  } else {
+    dropdownMenu.classList.add("show");
+    dropdownBtn.classList.add("open");
+    dropdownBtn.setAttribute("aria-expanded", "true");
+  }
+}
+
+dropdownBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  toggleDropdown();
+});
+
+// Close dropdown on click outside
+document.addEventListener("click", (e) => {
+  if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+    dropdownMenu.classList.remove("show");
+    dropdownBtn.classList.remove("open");
+    dropdownBtn.setAttribute("aria-expanded", "false");
+  }
+});
+
+// Category selection handler
+dropdownItems.forEach(item => {
+  item.addEventListener("click", () => {
+    dropdownItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    const category = item.getAttribute("data-category");
+    const labelText = item.querySelector("span").textContent;
+    const countText = item.querySelector(".badge").textContent;
+
+    selectedCategoryText.textContent = labelText;
+    selectedCount.textContent = countText;
+
+    const filtered = category === "all" ? products : products.filter(p => p.category === category);
+    grid.innerHTML = filtered.map(productItem => createProductCardMarkup(productItem)).join('');
+
+    dropdownMenu.classList.remove("show");
+    dropdownBtn.classList.remove("open");
+    dropdownBtn.setAttribute("aria-expanded", "false");
+  });
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   updateGlobalWALinks();
   updateCategoryCounts();
   renderSkeletons(12);
   
-  // Begin progressive render sequence after initial layout paint
   setTimeout(() => {
     progressiveRender(products);
   }, 1000);
-});
-
-// Category filtering with immediate render for interactive tab switches
-filterTabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    filterTabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-
-    const category = tab.getAttribute("data-category");
-    const filtered = category === "all" ? products : products.filter(p => p.category === category);
-    
-    // Direct immediate render upon explicit tab click
-    grid.innerHTML = filtered.map(item => createProductCardMarkup(item)).join('');
-  });
 });
