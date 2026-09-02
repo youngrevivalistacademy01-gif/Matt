@@ -3,195 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matt Enterprise | Intelligent Energy & Security</title>
+  <title>Matt Lifesciential LTD. | Engineering & Supply</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-  <!-- 1. CINEMATIC LOADER SCREEN -->
-  <div id="loader">
-    <div class="loader-header">
-      <span class="brand-title">MATT ENTERPRISE</span>
-      <span class="loader-counter" id="loader-count">0%</span>
-    </div>
-    
-    <div class="loader-center">
-      <div class="loader-image-container">
-        <img id="loader-img" src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" alt="Matt Enterprise Preview">
-      </div>
-      <p class="loader-caption" id="loader-caption">Intelligent Optical Surveillance</p>
-    </div>
-
-    <div class="loader-progress-bar">
-      <div class="loader-progress-fill" id="loader-fill"></div>
-    </div>
-  </div>
-
-  <!-- 2. MAIN CONTENT CONTAINER -->
-  <div id="main-content">
-    <header>
-      <div class="brand-title">MATT ENTERPRISE</div>
-      <nav>
-        <a href="#solar">Solar Systems</a>
-        <a href="#cameras">Surveillance</a>
-        <a href="#catalog">Full Catalog</a>
-        <a href="#contact">Contact Support</a>
-      </nav>
-    </header>
-
-    <!-- Skeleton View -->
-    <div id="skeleton-wrapper">
-      <div class="skeleton-pulse skeleton-hero"></div>
-      <div class="product-grid">
-        <div class="skeleton-pulse skeleton-card"></div>
-        <div class="skeleton-pulse skeleton-card"></div>
-        <div class="skeleton-pulse skeleton-card"></div>
-        <div class="skeleton-pulse skeleton-card"></div>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="brand-accent">MATT</span> LIFESCIENTIAL
+      </a>
+      <div class="nav-actions">
+        <a href="https://wa.me/2348154715953?text=Hello%20Matt%20Lifesciential%20LTD.%2C%20I%20have%20a%20general%20inquiry." 
+           target="_blank" class="nav-wa-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Direct Sales</span>
+        </a>
       </div>
     </div>
+  </header>
 
-    <!-- Real Content Area -->
-    <div id="real-content" class="hidden">
-      <!-- Hero Section -->
-      <section class="hero">
-        <div class="hero-text">
-          <span class="hero-tag">Commercial & Residential Solutions</span>
-          <h1>Independent Power. Absolute Security.</h1>
-          <p>Architectural-grade solar energy storage paired with next-generation high-definition optical surveillance for homes and commercial facilities across Nigeria.</p>
-          <a href="#catalog" class="btn-primary">Explore Catalog</a>
-        </div>
-        <div class="hero-image-box">
-          <img src="https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=800&q=80" alt="Matt Solar Architecture">
-        </div>
-      </section>
-
-      <!-- Extended Product Catalog -->
-      <section class="products-section" id="catalog">
-        <div class="section-header">
-          <h2 class="section-title">Featured Hardware & Systems</h2>
-          <p class="section-subtitle">High-efficiency energy arrays and real-time optical security systems.</p>
-        </div>
-
-        <div class="product-grid">
-          
-          <!-- Item 1: Security Camera -->
-          <div class="product-card">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=500&q=80" alt="Sentinel 4K Ultra Cam">
-            </div>
-            <span class="product-category">Surveillance</span>
-            <h3>Matt Sentinel 4K Outdoor Cam</h3>
-            <p class="card-desc">Night-vision optical camera with AI smart motion and perimeter detection.</p>
-            <div class="price-tag">₦245,000</div>
-            
-            <button class="details-btn" onclick="toggleDetails('details-1')">
-              <span>View Specifications</span>
-              <span class="arrow-icon">↓</span>
-            </button>
-            <div class="details-content" id="details-1">
-              <ul>
-                <li>4K UHD Resolution with Starlight Night Vision</li>
-                <li>Solar battery backup with 72-hour standby</li>
-                <li>Weatherproof IP67 aluminum chassis</li>
-                <li>Mobile application real-time alerts</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Item 2: Solar Panel System -->
-          <div class="product-card">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=500&q=80" alt="Helios Monocrystalline Solar Grid">
-            </div>
-            <span class="product-category">Solar Energy</span>
-            <h3>Helios 550W Monocrystalline Panel</h3>
-            <p class="card-desc">High-efficiency monocrystalline solar cell grid built for tropical conditions.</p>
-            <div class="price-tag">₦185,000 <small>/ panel</small></div>
-            
-            <button class="details-btn" onclick="toggleDetails('details-2')">
-              <span>View Specifications</span>
-              <span class="arrow-icon">↓</span>
-            </button>
-            <div class="details-content" id="details-2">
-              <ul>
-                <li>22.8% Conversion Efficiency Rating</li>
-                <li>Anti-reflective toughened glass surfacing</li>
-                <li>25-Year Linear Power Performance Warranty</li>
-                <li>Heavy-load resistance against harsh weather</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Item 3: PTZ Camera System -->
-          <div class="product-card">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=500&q=80" alt="Matt PTZ Dome Camera">
-            </div>
-            <span class="product-category">Surveillance</span>
-            <h3>Matt Sentinel 360 PTZ Dome</h3>
-            <p class="card-desc">Pan-Tilt-Zoom optical coverage with 30x optical zoom for wide estates.</p>
-            <div class="price-tag">₦420,000</div>
-            
-            <button class="details-btn" onclick="toggleDetails('details-3')">
-              <span>View Specifications</span>
-              <span class="arrow-icon">↓</span>
-            </button>
-            <div class="details-content" id="details-3">
-              <ul>
-                <li>360-degree continuous pan rotation</li>
-                <li>Auto-tracking capability for human & vehicles</li>
-                <li>Integrated two-way audio system</li>
-                <li>Encrypted local & cloud storage options</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Item 4: Complete Inverter/Solar Kit -->
-          <div class="product-card">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=500&q=80" alt="Matt Hybrid Inverter Power Hub">
-            </div>
-            <span class="product-category">Power Storage</span>
-            <h3>Matt PowerHub 5kVA Hybrid Inverter</h3>
-            <p class="card-desc">Integrated pure sine wave inverter paired with high-capacity Lithium power wall.</p>
-            <div class="price-tag">₦2,850,000</div>
-            
-            <button class="details-btn" onclick="toggleDetails('details-4')">
-              <span>View Specifications</span>
-              <span class="arrow-icon">↓</span>
-            </button>
-            <div class="details-content" id="details-4">
-              <ul>
-                <li>5.5kW Pure Sine Wave Output</li>
-                <li>5kW/h Lithium Iron Phosphate (LiFePO4) Battery</li>
-                <li>Real-time solar generation analytics display</li>
-                <li>Fast grid/solar dual charge capability</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Bottom WhatsApp Redirect Callout -->
-      <section class="whatsapp-banner" id="contact">
-        <div class="whatsapp-banner-content">
-          <h2>Ready to Secure & Power Your Property?</h2>
-          <p>For enquiries, custom installations, payment options, and seamless transactions, reach out to our Support Team on WhatsApp.</p>
-          <a href="https://wa.me/2340000000000?text=Hello%20Matt%20Enterprise,%20I%20am%20interested%20in%20your%20security%20and%20solar%20products." target="_blank" class="btn-whatsapp-large">
-            <svg class="wa-icon-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.39-4.19-1.14l-.3-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c.01-4.54 3.7-8.25 8.25-8.25m4.52 10.22c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.12-.17.25-.66.81-.81.98-.15.17-.31.19-.56.06-.25-.13-1.06-.39-2.02-1.25-.74-.66-1.24-1.48-1.39-1.73-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.23-.18-.48-.3Z"/></svg>
-            Chat with Support Team
-          </a>
-        </div>
-      </section>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">OFFICIAL STORE CATALOG</span>
+      <h1>Precision Engineering & Building Infrastructure</h1>
+      <p>Browse enterprise security, high-yield solar arrays, and certified structural building products. Order or inquire directly via WhatsApp.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- 3. FLOATING WHATSAPP BUTTON (ALWAYS ON SCREEN) -->
-  <a href="https://wa.me/2340000000000?text=Hello%20Matt%20Enterprise,%20I%20have%20an%20enquiry." target="_blank" class="whatsapp-float" aria-label="Chat with WhatsApp Rep">
-    <span class="float-tooltip">Chat with our WhatsApp rep</span>
-    <svg class="wa-icon-svg" viewBox="0 0 24 24"><path fill="#FFF" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.39-4.19-1.14l-.3-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c.01-4.54 3.7-8.25 8.25-8.25m4.52 10.22c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.12-.17.25-.66.81-.81.98-.15.17-.31.19-.56.06-.25-.13-1.06-.39-2.02-1.25-.74-.66-1.24-1.48-1.39-1.73-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.23-.18-.48-.3Z"/></svg>
+  <section class="controls-section">
+    <div class="container">
+      <div class="filter-wrapper">
+        <button class="filter-tab active" data-category="all">
+          All Products <span class="badge" id="count-all">0</span>
+        </button>
+        <button class="filter-tab" data-category="security">
+          Security Systems <span class="badge" id="count-security">0</span>
+        </button>
+        <button class="filter-tab" data-category="solar">
+          Solar Energy <span class="badge" id="count-solar">0</span>
+        </button>
+        <button class="filter-tab" data-category="building">
+          Building Materials <span class="badge" id="count-building">0</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container store-main">
+    <div class="product-grid" id="product-grid">
+      </div>
+  </main>
+
+  <a href="https://wa.me/2340000000000?text=Hello%20Matt%20Lifesciential%20LTD.%2C%20I%20would%20like%20to%20make%20an%20inquiry." 
+     target="_blank" class="floating-wa" aria-label="Quick WhatsApp Inquiry">
+    <div class="wa-tooltip">Chat with Sales</div>
+    <div class="wa-pulse"></div>
+    <i class="fa-brands fa-whatsapp"></i>
   </a>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Matt Lifesciential LTD. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
