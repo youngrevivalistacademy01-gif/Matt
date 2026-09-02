@@ -1,5 +1,5 @@
 // Replace with the live WhatsApp sales number (international format without + or spaces)
-const PHONE_NUMBER = "2340000000000"; 
+const PHONE_NUMBER = "2348154715953"; 
 
 const products = [
   // Security Cameras
