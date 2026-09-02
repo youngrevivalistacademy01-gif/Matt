@@ -2,8 +2,8 @@ const PHONE_NUMBER = "2348154715953";
 
 const products = [
   // Security Cameras
-  { id: 1, name: "Dome Camera", category: "security", price: "₦35,000", desc: "Vandal-resistant, discreet design offering wide-angle coverage.", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSVXTNld_3" },
-  { id: 2, name: "Bullet Camera", category: "security", price: "₦42,000", desc: "Long-range directional surveillance with built-in deterrent LEDs.", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:" },
+  { id: 1, name: "Dome Camera", category: "security", price: "₦35,000", desc: "Vandal-resistant, discreet design offering wide-angle coverage.", image: "https://www.camius.com/wp-content/uploads/2023/11/FD4KATC2-frontVIEW-1024.jpg" },
+  { id: 2, name: "Bullet Camera", category: "security", price: "₦42,000", desc: "Long-range directional surveillance with built-in deterrent LEDs.", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvCObLe65ccuh3U7sDUfDGp87SQGIME7wI6BcovxBtxZCZfeI5xsQdw-Q&s=10" },
   { id: 3, name: "PTZ (Pan-Tilt-Zoom)", category: "security", price: "₦85,000", desc: "Remote motorized tracking designed for complete coverage.", image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" },
   { id: 4, name: "Turret / Eyeball Camera", category: "security", price: "₦38,000", desc: "Flexible viewing angles engineered to eliminate IR lens glare.", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" },
   { id: 5, name: "Wireless / Wi-Fi Camera", category: "security", price: "₦28,000", desc: "Fast installation with zero video cabling required.", image: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80" },
